@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Georgia Studies Survival Challenge | Full Course Neal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --color-bg:#faf7f2;
+  --color-surface:#fff9f4;
+  --color-surface-2:#fff;
+  --color-surface-offset:#f3ede4;
+  --color-divider:#e4ddd4;
+  --color-border:#d8d0c6;
+  --color-text:#231a0e;
+  --color-text-muted:#7a6a58;
+  --color-text-faint:#b5a898;
+  --color-text-inverse:#fff9f4;
+  --color-primary:#c0582a;
+  --color-primary-hover:#a34520;
+  --color-primary-active:#7e3316;
+  --color-primary-highlight:#f2ddd4;
+  --color-gold:#c9860a;
+  --color-gold-bg:#fef3dc;
+  --color-success:#3d7a28;
+  --color-success-bg:#e0f0d8;
+  --color-error:#a12030;
+  --color-error-bg:#f8dde0;
+  --color-blue:#1b5f8c;
+  --color-blue-bg:#daeaf5;
+  --color-purple:#6b3ab0;
+  --color-purple-bg:#ece0f8;
+  --shadow-sm:0 1px 3px rgba(60,30,10,.08);
+  --shadow-md:0 4px 14px rgba(60,30,10,.10);
+  --shadow-lg:0 12px 36px rgba(60,30,10,.14);
+  --radius-sm:.375rem;--radius-md:.5rem;--radius-lg:.75rem;--radius-xl:1rem;--radius-full:9999px;
+  --font-display:'Oswald',sans-serif;
+  --font-body:'Source Sans 3',sans-serif;
+  --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+  --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+  --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+  --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+  --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;
+  --space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;
+}
+[data-theme="dark"]{
+  --color-bg:#1a1410;--color-surface:#221c16;--color-surface-2:#2a231c;
+  --color-surface-offset:#231d17;--color-divider:#2f271f;--color-border:#3d342a;
+  --color-text:#e8e0d6;--color-text-muted:#8a7d6e;--color-text-faint:#5c5247;
+  --color-primary:#e07a4a;--color-primary-hover:#d96030;--color-primary-active:#b84a1e;
+  --color-primary-highlight:#3d2518;
+  --color-gold:#e8a830;--color-gold-bg:#362a10;
+  --color-success:#6faa48;--color-success-bg:#1e3012;
+  --color-error:#e05060;--color-error-bg:#3a1018;
+  --color-blue:#5592c8;--color-blue-bg:#0e2235;
+  --color-purple:#a86de0;--color-purple-bg:#25144a;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.3);--shadow-md:0 4px 14px rgba(0,0,0,.4);--shadow-lg:0 12px 36px rgba(0,0,0,.5);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:none;text-size-adjust:none;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);line-height:1.6}
+h1,h2,h3,h4{font-family:var(--font-display);text-wrap:balance;line-height:1.15}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+img,svg{display:block;max-width:100%;height:auto}
+
+/* Layout */
+#app{min-height:100dvh;display:flex;flex-direction:column}
+.header{background:var(--color-primary);color:var(--color-text-inverse);padding:var(--space-4) var(--space-6);display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow-md)}
+.header-logo{display:flex;align-items:center;gap:var(--space-3)}
+.header-logo svg{width:36px;height:36px;flex-shrink:0}
+.header-title{font-family:var(--font-display);font-size:var(--text-lg);letter-spacing:.02em;line-height:1.1}
+.header-sub{font-size:var(--text-xs);opacity:.8;margin-top:2px}
+.theme-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius-full);padding:var(--space-2) var(--space-3);font-size:var(--text-sm);color:var(--color-text-inverse);display:flex;align-items:center;gap:var(--space-2);transition:background .18s}
+.theme-btn:hover{background:rgba(255,255,255,.25)}
+
+.main{flex:1;display:flex;flex-direction:column;align-items:center;padding:var(--space-8) var(--space-4);gap:var(--space-6)}
+
+/* Screens */
+.screen{display:none;width:100%;max-width:820px;animation:fadeIn .3s ease}
+.screen.active{display:flex;flex-direction:column;gap:var(--space-6);align-items:center}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Welcome */
+.welcome-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-10) var(--space-8);text-align:center;box-shadow:var(--shadow-md);width:100%}
+.welcome-badge{display:inline-block;background:var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);margin-bottom:var(--space-4)}
+.welcome-card h1{font-size:var(--text-2xl);color:var(--color-primary);margin-bottom:var(--space-3)}
+.welcome-card p{color:var(--color-text-muted);max-width:55ch;margin:0 auto var(--space-6)}
+.rounds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-3);margin:var(--space-6) 0}
+.round-chip{background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);text-align:left}
+.round-chip-label{font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px}
+.round-chip-name{font-size:var(--text-sm);font-weight:700;color:var(--color-text)}
+.round-chip-std{font-size:var(--text-xs);color:var(--color-text-faint)}
+
+/* Team setup */
+.team-setup{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-8);width:100%;box-shadow:var(--shadow-sm)}
+.team-setup h2{font-size:var(--text-xl);margin-bottom:var(--space-2)}
+.team-setup p{color:var(--color-text-muted);margin-bottom:var(--space-6)}
+.mode-tabs{display:flex;gap:var(--space-2);margin-bottom:var(--space-6)}
+.mode-tab{flex:1;padding:var(--space-3);border:2px solid var(--color-border);border-radius:var(--radius-lg);font-weight:600;font-size:var(--text-sm);text-align:center;cursor:pointer;transition:all .18s;background:var(--color-bg)}
+.mode-tab.active{border-color:var(--color-primary);background:var(--color-primary-highlight);color:var(--color-primary)}
+.team-inputs{display:flex;flex-direction:column;gap:var(--space-3)}
+.team-row{display:flex;align-items:center;gap:var(--space-3)}
+.team-color-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0}
+.team-input{flex:1;padding:var(--space-3) var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);font-size:var(--text-base);color:var(--color-text);transition:border-color .18s}
+.team-input:focus{outline:none;border-color:var(--color-primary)}
+
+/* Round intro */
+.round-intro{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-10) var(--space-8);text-align:center;width:100%;box-shadow:var(--shadow-md)}
+.round-number{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--color-primary);margin-bottom:var(--space-2)}
+.round-intro h2{font-size:var(--text-2xl);margin-bottom:var(--space-2)}
+.round-intro .std-tag{display:inline-block;background:var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);margin-bottom:var(--space-4)}
+.round-intro p{color:var(--color-text-muted);max-width:50ch;margin:0 auto var(--space-6)}
+.score-strip{display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;margin-top:var(--space-4)}
+.score-pill{background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-full);padding:var(--space-2) var(--space-4);font-size:var(--text-sm);font-weight:700;display:flex;align-items:center;gap:var(--space-2)}
+.score-dot{width:10px;height:10px;border-radius:50%}
+
+/* Question */
+.question-wrap{width:100%;display:flex;flex-direction:column;gap:var(--space-4)}
+.question-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-2)}
+.q-meta{font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.q-std{background:var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;padding:2px var(--space-2);border-radius:var(--radius-full)}
+.progress-bar{height:6px;background:var(--color-surface-offset);border-radius:var(--radius-full);overflow:hidden;width:100%}
+.progress-fill{height:100%;background:var(--color-primary);border-radius:var(--radius-full);transition:width .4s ease}
+.question-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-8) var(--space-8);box-shadow:var(--shadow-md);width:100%}
+.question-card h2{font-size:var(--text-xl);margin-bottom:var(--space-6);line-height:1.3}
+.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+.ans-btn{padding:var(--space-4) var(--space-5);border:2px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface-offset);text-align:left;font-size:var(--text-sm);font-weight:600;line-height:1.4;transition:all .18s;cursor:pointer;color:var(--color-text)}
+.ans-btn:hover:not([disabled]){border-color:var(--color-primary);background:var(--color-primary-highlight);color:var(--color-primary)}
+.ans-btn.correct{border-color:var(--color-success)!important;background:var(--color-success-bg)!important;color:var(--color-success)!important}
+.ans-btn.wrong{border-color:var(--color-error)!important;background:var(--color-error-bg)!important;color:var(--color-error)!important}
+.ans-btn[disabled]{cursor:default}
+.feedback-box{border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);font-size:var(--text-sm);display:none}
+.feedback-box.show{display:block}
+.feedback-box.correct-fb{background:var(--color-success-bg);color:var(--color-success);border:1px solid var(--color-success)}
+.feedback-box.wrong-fb{background:var(--color-error-bg);color:var(--color-error);border:1px solid var(--color-error)}
+.feedback-box strong{display:block;margin-bottom:var(--space-1);font-size:var(--text-base)}
+
+/* Team scoring */
+.team-scoring{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm);width:100%}
+.team-scoring h3{font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-4);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--font-body)}
+.scoring-teams{display:flex;gap:var(--space-3);flex-wrap:wrap}
+.score-team-btn{flex:1;min-width:120px;padding:var(--space-4);border:2px solid var(--color-border);border-radius:var(--radius-lg);cursor:pointer;transition:all .18s;text-align:center;background:var(--color-surface-offset)}
+.score-team-btn:hover{border-color:var(--color-primary);transform:translateY(-1px)}
+.score-team-btn .t-name{font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-1)}
+.score-team-btn .t-score{font-size:var(--text-xl);font-family:var(--font-display);color:var(--color-primary)}
+.score-team-btn .t-pts{font-size:var(--text-xs);color:var(--color-text-muted)}
+.scored-flash{animation:scoreFlash .5s ease}
+@keyframes scoreFlash{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+
+/* Final screen */
+.final-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-10) var(--space-8);text-align:center;width:100%;box-shadow:var(--shadow-lg)}
+.trophy{font-size:4rem;margin-bottom:var(--space-4)}
+.final-card h2{font-size:var(--text-2xl);color:var(--color-primary);margin-bottom:var(--space-2)}
+.final-card p{color:var(--color-text-muted);margin-bottom:var(--space-8)}
+.final-scores{display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8)}
+.final-row{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4) var(--space-5);border-radius:var(--radius-lg);background:var(--color-surface-offset);border:1px solid var(--color-border)}
+.final-row.winner{background:var(--color-gold-bg);border-color:var(--color-gold)}
+.final-row-left{display:flex;align-items:center;gap:var(--space-3)}
+.final-rank{font-family:var(--font-display);font-size:var(--text-lg);color:var(--color-text-muted);width:28px}
+.final-row.winner .final-rank{color:var(--color-gold)}
+.final-name{font-weight:700}
+.final-pts{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-primary)}
+.final-row.winner .final-pts{color:var(--color-gold)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);letter-spacing:.02em;transition:all .18s;cursor:pointer;border:none;font-family:var(--font-body)}
+.btn-primary{background:var(--color-primary);color:var(--color-text-inverse)}
+.btn-primary:hover{background:var(--color-primary-hover);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-secondary{background:var(--color-surface-offset);color:var(--color-text);border:1.5px solid var(--color-border)}
+.btn-secondary:hover{background:var(--color-surface);border-color:var(--color-primary);color:var(--color-primary)}
+.btn-lg{padding:var(--space-4) var(--space-10);font-size:var(--text-base)}
+
+/* Footer */
+.footer{padding:var(--space-4) var(--space-6);text-align:center;font-size:var(--text-xs);color:var(--color-text-faint);border-top:1px solid var(--color-divider)}
+
+@media(max-width:600px){
+  .answer-grid{grid-template-columns:1fr}
+  .welcome-card,.team-setup,.round-intro,.question-card,.final-card{padding:var(--space-6) var(--space-4)}
+  .rounds-grid{grid-template-columns:1fr 1fr}
+  .mode-tabs{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">
+      <svg viewBox="0 0 36 36" fill="none" aria-label="Full Course Neal logo">
+        <rect width="36" height="36" rx="8" fill="rgba(255,255,255,.15)"/>
+        <path d="M10 12h16M10 18h10M10 24h13" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="27" cy="24" r="4" fill="white" opacity=".9"/>
+        <path d="M25.5 24l1 1 2-2" stroke="#c0582a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="header-title">Georgia Studies Survival Challenge</div>
+        <div class="header-sub">Full Course Neal · 8th Grade Georgia Studies</div>
+      </div>
+    </div>
+    <button class="theme-btn" data-theme-toggle aria-label="Toggle dark mode">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+  </header>
+
+  <main class="main" id="main">
+
+    <!-- Screen: Welcome -->
+    <div class="screen active" id="screen-welcome">
+      <div class="welcome-card">
+        <span class="welcome-badge">End-of-Year Review Game</span>
+        <h1>Can Your Team Survive<br>Georgia Studies?</h1>
+        <p>Battle through 6 rounds covering every major Georgia Studies standard. Award points to the team that answers first — most points wins!</p>
+        <div class="rounds-grid">
+          <div class="round-chip"><span class="round-chip-label">Round 1</span><span class="round-chip-name">Georgia Geography</span><span class="round-chip-std">SS8G1 · SS8G2 · SS8G3</span></div>
+          <div class="round-chip"><span class="round-chip-label">Round 2</span><span class="round-chip-name">Early Georgia &amp; Exploration</span><span class="round-chip-std">SS8H1 · SS8H2</span></div>
+          <div class="round-chip"><span class="round-chip-label">Round 3</span><span class="round-chip-name">Revolution to New Nation</span><span class="round-chip-std">SS8H3 · SS8H4 · SS8H5</span></div>
+          <div class="round-chip"><span class="round-chip-label">Round 4</span><span class="round-chip-name">Civil War to New South</span><span class="round-chip-std">SS8H6 · SS8H7 · SS8H8</span></div>
+          <div class="round-chip"><span class="round-chip-label">Round 5</span><span class="round-chip-name">Civil Rights &amp; Modern Georgia</span><span class="round-chip-std">SS8H9 · SS8H10 · SS8H11</span></div>
+          <div class="round-chip"><span class="round-chip-label">Round 6</span><span class="round-chip-name">Government &amp; Economics</span><span class="round-chip-std">SS8CG · SS8E</span></div>
+        </div>
+        <button class="btn btn-primary btn-lg" onclick="showScreen('screen-setup')">Set Up Teams &amp; Start →</button>
+      </div>
+    </div>
+
+    <!-- Screen: Team Setup -->
+    <div class="screen" id="screen-setup">
+      <div class="team-setup">
+        <h2>Set Up Your Game</h2>
+        <p>Choose a mode, name your teams, and get ready to compete!</p>
+        <div class="mode-tabs">
+          <button class="mode-tab active" onclick="setMode('teams',this)">🏆 Team Mode</button>
+          <button class="mode-tab" onclick="setMode('individual',this)">👤 Individual Mode</button>
+          <button class="mode-tab" onclick="setMode('class',this)">📋 Whole Class</button>
+        </div>
+        <div class="team-inputs" id="team-inputs">
+          <div class="team-row"><span class="team-color-dot" style="background:#c0582a"></span><input class="team-input" id="t1" placeholder="Team 1 name" value="Bulldogs"></div>
+          <div class="team-row"><span class="team-color-dot" style="background:#1b5f8c"></span><input class="team-input" id="t2" placeholder="Team 2 name" value="Peach Pickers"></div>
+          <div class="team-row"><span class="team-color-dot" style="background:#3d7a28"></span><input class="team-input" id="t3" placeholder="Team 3 name (optional)" value=""></div>
+          <div class="team-row"><span class="team-color-dot" style="background:#c9860a"></span><input class="team-input" id="t4" placeholder="Team 4 name (optional)" value=""></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:var(--space-3)">
+        <button class="btn btn-secondary" onclick="showScreen('screen-welcome')">← Back</button>
+        <button class="btn btn-primary btn-lg" onclick="startGame()">Launch Game →</button>
+      </div>
+    </div>
+
+    <!-- Screen: Round Intro -->
+    <div class="screen" id="screen-round-intro">
+      <div class="round-intro">
+        <div class="round-number" id="ri-number">Round 1 of 6</div>
+        <h2 id="ri-title">Georgia Geography</h2>
+        <div class="std-tag" id="ri-std">SS8G1 · SS8G2 · SS8G3</div>
+        <p id="ri-desc">Time to prove you know the Peach State from top to bottom — rivers, regions, cities, and all!</p>
+        <div class="score-strip" id="ri-scores"></div>
+      </div>
+      <button class="btn btn-primary btn-lg" onclick="startRound()">Start Round →</button>
+    </div>
+
+    <!-- Screen: Question -->
+    <div class="screen" id="screen-question">
+      <div class="question-wrap">
+        <div class="question-header">
+          <span class="q-meta" id="q-meta">Question 1 of 5 · Round 1</span>
+          <span class="q-std" id="q-std">SS8G1</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="q-progress" style="width:20%"></div></div>
+        <div class="question-card">
+          <h2 id="q-text">Loading question...</h2>
+          <div class="answer-grid" id="q-answers"></div>
+          <div class="feedback-box" id="q-feedback"></div>
+        </div>
+        <div class="team-scoring" id="team-scoring">
+          <h3>Award a point — which team answered?</h3>
+          <div class="scoring-teams" id="scoring-teams"></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;width:100%">
+        <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none">Next Question →</button>
+      </div>
+    </div>
+
+    <!-- Screen: Final -->
+    <div class="screen" id="screen-final">
+      <div class="final-card">
+        <div class="trophy">🏆</div>
+        <h2>Georgia Studies Champions!</h2>
+        <p>You survived all 6 rounds. Here's how the final standings look:</p>
+        <div class="final-scores" id="final-scores"></div>
+        <div style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-secondary" onclick="location.reload()">Play Again</button>
+          <button class="btn btn-primary" onclick="showScreen('screen-setup')">New Game Setup</button>
+        </div>
+        <p style="margin-top:var(--space-6);font-size:var(--text-xs);color:var(--color-text-faint)">Full Course Neal · fullcourseneal.com · Georgia Standards of Excellence</p>
+      </div>
+    </div>
+
+  </main>
+  <footer class="footer">Full Course Neal · Georgia Studies Survival Challenge · Aligned to Georgia Standards of Excellence (SS8G, SS8H, SS8CG, SS8E)</footer>
+</div>
+
+<script>
+// ===== GAME DATA =====
+const ROUNDS = [
+  {
+    title:"Georgia Geography",
+    std:"SS8G1 · SS8G2 · SS8G3",
+    desc:"Prove you know the Peach State from top to bottom — rivers, regions, cities, and all!",
+    questions:[
+      {q:"Which of Georgia's five physiographic regions is home to Atlanta and is known for its rolling hills and red clay soil?",a:["Piedmont","Coastal Plain","Blue Ridge","Ridge and Valley"],correct:0,std:"SS8G1",exp:"The Piedmont region runs through central Georgia and includes Atlanta. Its red clay soil and rolling hills are characteristic features."},
+      {q:"What is the Fall Line, and why was it important to Georgia's development?",a:["Where rivers drop in elevation — cities grew there for water power","The border between Georgia and South Carolina","A military line during the Civil War","The edge of the Coastal Plain region"],correct:0,std:"SS8G1",exp:"The Fall Line marks where the Piedmont meets the Coastal Plain. Rivers drop here, creating waterfalls that powered early mills — cities like Macon and Columbus developed at the Fall Line."},
+      {q:"Which river forms part of Georgia's western border with Alabama?",a:["Chattahoochee River","Savannah River","Oconee River","Flint River"],correct:0,std:"SS8G2",exp:"The Chattahoochee River forms Georgia's western boundary with Alabama and flows south toward Florida."},
+      {q:"The Okefenokee Swamp is located in which region of Georgia?",a:["Coastal Plain","Piedmont","Ridge and Valley","Blue Ridge"],correct:0,std:"SS8G1",exp:"The Okefenokee Swamp is in the Coastal Plain region of southeastern Georgia and is one of the largest freshwater wetlands in North America."},
+      {q:"What river forms most of Georgia's eastern border with South Carolina?",a:["Savannah River","Ogeechee River","Chattahoochee River","Altamaha River"],correct:0,std:"SS8G2",exp:"The Savannah River forms Georgia's eastern border with South Carolina and flows into the Atlantic Ocean at the city of Savannah."}
+    ]
+  },
+  {
+    title:"Early Georgia & European Exploration",
+    std:"SS8H1 · SS8H2",
+    desc:"From the first peoples of Georgia to Spanish missions and British colonization — how well do you know it?",
+    questions:[
+      {q:"Which Native American group built large earthen mounds and was the dominant culture in Georgia before European contact?",a:["Mississippian Culture","Woodland Culture","Paleo-Indians","Creek Nation"],correct:0,std:"SS8H1",exp:"The Mississippian Culture (800–1600 AD) built large platform mounds for ceremonies and leadership. Etowah Indian Mounds in Cartersville is a well-known site."},
+      {q:"James Oglethorpe founded the Georgia colony in 1733. What were his TWO main reasons for establishing the colony?",a:["Buffer against Spanish Florida and a refuge for English debtors","Tobacco farming and enslaved labor","Gold and silver mining","Trade with Native Americans and fur exports"],correct:0,std:"SS8H2",exp:"Oglethorpe had two main goals: (1) protect South Carolina from Spanish Florida by making Georgia a military buffer, and (2) give English debtors a fresh start in the New World."},
+      {q:"What was the name of the Spanish explorers' route through Georgia, and who led the most famous Spanish expedition through the region in 1540?",a:["Hernando de Soto","Christopher Columbus","Juan Ponce de León","Francisco Vásquez de Coronado"],correct:0,std:"SS8H1",exp:"Hernando de Soto led a Spanish expedition through present-day Georgia in 1540, encountering many Native American groups including the Mississippian chiefdom of Coosa."},
+      {q:"The Trustees of Georgia originally banned what two things from the colony that were later allowed?",a:["Slavery and rum/hard liquor","Women and children","Weapons and trade","Large land grants and tobacco"],correct:0,std:"SS8H2",exp:"The Trustees originally banned slavery and hard liquor (rum). Colonists pushed back and both bans were eventually lifted — slavery was legalized in Georgia in 1751."},
+      {q:"What was the Battle of Bloody Marsh (1742), and why was it important to Georgia?",a:["Oglethorpe defeated a Spanish invasion — securing Georgia as a British colony","A Creek attack on Savannah that failed","A French attempt to take Fort King George","A battle between colonists and the Trustees"],correct:0,std:"SS8H2",exp:"In 1742, Oglethorpe and his forces ambushed a much larger Spanish army on St. Simons Island at Bloody Marsh. The victory ensured Georgia remained a British colony and ended Spanish military threats."}
+    ]
+  },
+  {
+    title:"Revolution to New Nation",
+    std:"SS8H3 · SS8H4 · SS8H5",
+    desc:"From Patriots and Loyalists to the Trail of Tears — this round covers Georgia's biggest transformations.",
+    questions:[
+      {q:"During the American Revolution, Georgia was divided between Patriots and Loyalists. Which Georgia leader was known as the 'Signer' and signed the Declaration of Independence?",a:["Button Gwinnett","Lyman Hall","George Walton","Elijah Clarke"],correct:0,std:"SS8H3",exp:"Button Gwinnett was one of three Georgia signers of the Declaration of Independence (along with Lyman Hall and George Walton). He later died in a duel with General Lachlan McIntosh."},
+      {q:"What was the headright system, and how did it contribute to Georgia's westward expansion after the Revolution?",a:["Land grants given to white male heads of household — it pushed settlers onto Native lands","A system of paying for land using livestock","A lottery to distribute land fairly","Grants only given to veterans of the Revolution"],correct:0,std:"SS8H4",exp:"The headright system granted up to 200 acres to white male heads of households, plus 50 acres for each family member. It drove rapid westward expansion but displaced Native American peoples."},
+      {q:"The Indian Removal Act of 1830 and the Supreme Court case Worcester v. Georgia both involved which Native American nation in Georgia?",a:["Cherokee Nation","Creek Nation","Choctaw Nation","Chickasaw Nation"],correct:0,std:"SS8H5",exp:"The Cherokee Nation challenged removal in Worcester v. Georgia. The Supreme Court ruled in their favor, but President Andrew Jackson refused to enforce the ruling, leading to the forced removal known as the Trail of Tears."},
+      {q:"What was the Trail of Tears?",a:["The forced relocation of the Cherokee people from Georgia to Oklahoma in 1838–1839","A trade route used by Native Americans before European contact","A path used by the Creek Nation during the Creek War","The route Hernando de Soto took through Georgia"],correct:0,std:"SS8H5",exp:"In 1838–1839, the U.S. Army forcibly removed approximately 16,000 Cherokee people from their homeland in Georgia to present-day Oklahoma. Thousands died from disease, starvation, and cold on the journey."},
+      {q:"What economic system dominated antebellum Georgia and relied on enslaved labor for its profits?",a:["Plantation agriculture (cotton)","Textile manufacturing","Fur trading","Subsistence farming"],correct:0,std:"SS8H5",exp:"Antebellum Georgia's economy was dominated by cotton plantation agriculture, which depended entirely on the forced labor of enslaved African Americans. Eli Whitney's cotton gin (1793) had made large-scale cotton farming even more profitable."}
+    ]
+  },
+  {
+    title:"Civil War to New South",
+    std:"SS8H6 · SS8H7 · SS8H8",
+    desc:"Sherman's March, Reconstruction, and the Great Depression — Georgia's most turbulent century.",
+    questions:[
+      {q:"What was General Sherman's 'March to the Sea,' and what was its military strategy?",a:["Destroying Confederate resources from Atlanta to Savannah to break Southern will","A naval attack on Savannah from the Atlantic","A Union march to capture Richmond, Virginia","A Confederate retreat through Georgia to Florida"],correct:0,std:"SS8H6",exp:"Sherman's March to the Sea (1864) was a total war campaign from Atlanta to Savannah. Sherman's 60,000 troops destroyed railroads, crops, and supplies to break Confederate will and the South's ability to continue fighting."},
+      {q:"What were the Black Codes passed in Georgia after the Civil War?",a:["Laws designed to restrict the rights and freedoms of formerly enslaved people","Constitutional amendments giving Black men voting rights","Programs providing land to formerly enslaved people","Federal laws protecting the rights of freedmen"],correct:0,std:"SS8H7",exp:"Black Codes were laws passed in Southern states after the Civil War to limit the rights of freedmen. They restricted movement, required labor contracts, and effectively kept formerly enslaved people in conditions similar to slavery."},
+      {q:"Henry Grady promoted the idea of the 'New South' after Reconstruction. What did this idea call for?",a:["Industrialization and economic diversity to modernize the South","Return to plantation agriculture and the old Southern way of life","Keeping the South separate from Northern industry","Establishing new plantations with paid laborers"],correct:0,std:"SS8H7",exp:"Henry Grady, editor of the Atlanta Constitution, argued in the 1880s that the South needed to industrialize, diversify its economy, and attract Northern investment — a 'New South' built on manufacturing, not just agriculture."},
+      {q:"What was the significance of the 1906 Atlanta Race Riot?",a:["White mobs attacked Black communities, exposing the racial terror of the Jim Crow era","A protest by Black Atlantans against segregation laws","A labor strike that turned violent in Atlanta factories","A conflict between Georgia and federal Reconstruction forces"],correct:0,std:"SS8H8",exp:"The 1906 Atlanta Race Riot was a massacre in which white mobs attacked Black neighborhoods for four days. Dozens of Black people were killed. The riot was fueled by sensationalist newspaper reports and reflected the violent racism of the Jim Crow era."},
+      {q:"How did World War II help pull Georgia out of the Great Depression?",a:["Military bases and defense industry jobs created massive economic growth","Georgia farmers received federal subsidies to grow war crops","Northern factories relocated to Georgia for cheaper labor","Georgia became a major naval power on the Atlantic coast"],correct:0,std:"SS8H8",exp:"WWII transformed Georgia's economy. New military bases like Fort Benning and Camp Gordon created thousands of jobs, and defense industries (aircraft, ships, vehicles) brought industrial employment that ended the Depression in Georgia."}
+    ]
+  },
+  {
+    title:"Civil Rights & Modern Georgia",
+    std:"SS8H9 · SS8H10 · SS8H11",
+    desc:"From Martin Luther King Jr. to the 1996 Olympics — Georgia's modern story.",
+    questions:[
+      {q:"Martin Luther King Jr. was born in Atlanta and became the leader of the Civil Rights Movement. What was his core philosophy for achieving change?",a:["Nonviolent direct action and civil disobedience","Armed resistance to racial inequality","Political lobbying and legislation only","Separation from white society"],correct:0,std:"SS8H9",exp:"Dr. King's philosophy was rooted in nonviolent direct action, inspired by Mahatma Gandhi. He believed in confronting unjust laws through peaceful protest, marches, sit-ins, and civil disobedience to expose injustice."},
+      {q:"What was the significance of the Albany Movement (1961–1962) in Georgia's Civil Rights history?",a:["A major desegregation campaign that tested and refined nonviolent protest tactics","The first successful sit-in in Georgia history","The campaign that ended school segregation in Atlanta","The march that led directly to the Civil Rights Act"],correct:0,std:"SS8H9",exp:"The Albany Movement was a broad campaign to desegregate Albany, Georgia. Though it did not achieve immediate desegregation, it taught civil rights leaders valuable lessons about organizing and strategy that they applied in later campaigns like Birmingham."},
+      {q:"Georgia Governor Lester Maddox and Georgia Governor Jimmy Carter represent two very different sides of Georgia politics. What was Carter's historic achievement?",a:["Became the 39th President of the United States (1977–1981)","Was the first Georgia governor to desegregate schools","Led the integration of the University of Georgia","Signed Georgia's version of the Civil Rights Act"],correct:0,std:"SS8H10",exp:"Jimmy Carter of Plains, Georgia served as governor before being elected the 39th President in 1976. He is also known for his post-presidential humanitarian work with Habitat for Humanity and the Carter Center."},
+      {q:"What event in 1996 brought massive international attention and investment to Atlanta and Georgia?",a:["The Summer Olympic Games hosted in Atlanta","The World's Fair in Savannah","Georgia hosted the Super Bowl for the first time","The opening of Hartsfield-Jackson International Airport"],correct:0,std:"SS8H11",exp:"Atlanta hosted the 1996 Centennial Summer Olympic Games. The event brought billions in investment, transformed Atlanta's infrastructure, and put Georgia on the world stage as a major global city."},
+      {q:"Who was the first Black student to attend the University of Georgia, and in what year was the university desegregated?",a:["Charlayne Hunter and Hamilton Holmes, 1961","Martin Luther King Jr., 1958","John Lewis, 1963","Andrew Young, 1960"],correct:0,std:"SS8H9",exp:"In January 1961, Charlayne Hunter and Hamilton Holmes became the first Black students to attend the University of Georgia after a federal court order. Their enrollment was met with riots, but they completed their degrees — Hunter becoming a journalist and Holmes a physician."}
+    ]
+  },
+  {
+    title:"Georgia Government & Economics",
+    std:"SS8CG · SS8E",
+    desc:"Three branches, checks and balances, and Georgia's economy — the final round!",
+    questions:[
+      {q:"Georgia's state government has three branches. Which branch is responsible for making the state's laws?",a:["Georgia General Assembly (Legislative Branch)","Georgia Supreme Court (Judicial Branch)","Office of the Governor (Executive Branch)","Georgia State Board of Education"],correct:0,std:"SS8CG1",exp:"The Georgia General Assembly is the legislative branch. It consists of the Senate (56 members) and the House of Representatives (180 members) and is responsible for writing and passing state laws."},
+      {q:"What is the role of the Governor of Georgia within the state's executive branch?",a:["Enforces state laws and serves as head of state government","Interprets the constitutionality of laws","Writes and passes the state budget","Appoints all state judges"],correct:0,std:"SS8CG2",exp:"The Governor is the chief executive of Georgia. The Governor enforces state laws, can sign or veto legislation, commands the Georgia National Guard, and appoints many state officials."},
+      {q:"What is the concept of 'checks and balances' in Georgia's state government?",a:["Each branch has powers that limit the other branches so no one branch becomes too powerful","The governor checks the state budget for accuracy","Courts check that taxes are balanced fairly","The legislature balances spending between counties"],correct:0,std:"SS8CG1",exp:"Checks and balances means each branch has specific powers over the other branches. For example, the Governor can veto legislation, the General Assembly can override vetoes, and courts can strike down unconstitutional laws."},
+      {q:"What does the term 'free enterprise system' mean, and how does it describe Georgia's economy?",a:["Individuals and businesses own property and make economic decisions with limited government control","The government owns all major industries","All businesses must share profits equally","Citizens receive free goods and services from the government"],correct:0,std:"SS8E1",exp:"Free enterprise (capitalism) means individuals and businesses own property, make production decisions, and keep profits with limited government interference. Georgia operates within this system — individuals can start businesses and compete in the marketplace."},
+      {q:"What are Georgia's top industries today that drive the state's modern economy?",a:["Agriculture, film/entertainment, logistics/shipping, and technology","Only cotton and peanut farming","Manufacturing only","Tourism in Savannah and Atlanta only"],correct:0,std:"SS8E4",exp:"Modern Georgia has a diverse economy: agriculture (peanuts, poultry, pecans), a massive film/TV industry (Georgia is the #1 film production state), Hartsfield-Jackson makes Atlanta a global logistics hub, and technology companies have major presences in Atlanta."}
+    ]
+  }
+];
+
+// ===== STATE =====
+let teams = [];
+let scores = [];
+let currentRound = 0;
+let currentQ = 0;
+let answered = false;
+let gameMode = 'teams';
+const TEAM_COLORS = ['#c0582a','#1b5f8c','#3d7a28','#c9860a'];
+
+function setMode(mode, btn) {
+  gameMode = mode;
+  document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const inp = document.getElementById('team-inputs');
+  if (mode === 'individual') {
+    inp.querySelectorAll('.team-row')[2].style.display='none';
+    inp.querySelectorAll('.team-row')[3].style.display='none';
+    inp.querySelectorAll('input')[0].value = 'Student 1';
+    inp.querySelectorAll('input')[1].value = 'Student 2';
+  } else if (mode === 'class') {
+    inp.querySelectorAll('.team-row')[0].querySelector('input').value = 'Class Score';
+    [1,2,3].forEach(i => inp.querySelectorAll('.team-row')[i].style.display='none');
+  } else {
+    inp.querySelectorAll('.team-row').forEach(r => r.style.display='flex');
+    inp.querySelectorAll('input')[0].value = 'Bulldogs';
+    inp.querySelectorAll('input')[1].value = 'Peach Pickers';
+  }
+}
+
+function startGame() {
+  teams = [];
+  scores = [];
+  const ids = ['t1','t2','t3','t4'];
+  ids.forEach((id,i) => {
+    const val = document.getElementById(id).value.trim();
+    if (val) { teams.push({name:val,color:TEAM_COLORS[i]}); scores.push(0); }
+  });
+  if (teams.length === 0) { teams=[{name:'Class',color:TEAM_COLORS[0]}]; scores=[0]; }
+  currentRound = 0;
+  showRoundIntro();
+}
+
+function showRoundIntro() {
+  const r = ROUNDS[currentRound];
+  document.getElementById('ri-number').textContent = `Round ${currentRound+1} of ${ROUNDS.length}`;
+  document.getElementById('ri-title').textContent = r.title;
+  document.getElementById('ri-std').textContent = r.std;
+  document.getElementById('ri-desc').textContent = r.desc;
+  const ss = document.getElementById('ri-scores');
+  ss.innerHTML = teams.map((t,i) => `<div class="score-pill"><span class="score-dot" style="background:${t.color}"></span>${t.name}: <strong>${scores[i]} pts</strong></div>`).join('');
+  showScreen('screen-round-intro');
+}
+
+function startRound() {
+  currentQ = 0;
+  showQuestion();
+}
+
+function showQuestion() {
+  const r = ROUNDS[currentRound];
+  const q = r.questions[currentQ];
+  answered = false;
+  const total = r.questions.length;
+  document.getElementById('q-meta').textContent = `Question ${currentQ+1} of ${total} · Round ${currentRound+1}: ${r.title}`;
+  document.getElementById('q-std').textContent = q.std;
+  document.getElementById('q-progress').style.width = `${((currentQ+1)/total)*100}%`;
+  document.getElementById('q-text').textContent = q.q;
+  const fb = document.getElementById('q-feedback');
+  fb.className = 'feedback-box';
+  fb.innerHTML = '';
+  document.getElementById('next-btn').style.display = 'none';
+  const ag = document.getElementById('q-answers');
+  ag.innerHTML = q.a.map((ans,i) => `<button class="ans-btn" onclick="selectAnswer(${i})">${ans}</button>`).join('');
+  buildScoringUI();
+  showScreen('screen-question');
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = ROUNDS[currentRound].questions[currentQ];
+  const btns = document.querySelectorAll('.ans-btn');
+  btns.forEach(b => b.setAttribute('disabled',''));
+  btns[q.correct].classList.add('correct');
+  const fb = document.getElementById('q-feedback');
+  if (idx === q.correct) {
+    btns[idx].classList.add('correct');
+    fb.className = 'feedback-box correct-fb show';
+    fb.innerHTML = `<strong>✓ Correct!</strong>${q.exp}`;
+  } else {
+    btns[idx].classList.add('wrong');
+    fb.className = 'feedback-box wrong-fb show';
+    fb.innerHTML = `<strong>✗ Not quite.</strong>${q.exp}`;
+  }
+  document.getElementById('next-btn').style.display = 'inline-flex';
+}
+
+function buildScoringUI() {
+  const st = document.getElementById('scoring-teams');
+  st.innerHTML = teams.map((t,i) => `
+    <div class="score-team-btn" id="sbtn-${i}" onclick="awardPoint(${i})">
+      <div class="t-name">${t.name}</div>
+      <div class="t-score" id="score-${i}">${scores[i]}</div>
+      <div class="t-pts">points</div>
+    </div>
+  `).join('');
+}
+
+function awardPoint(idx) {
+  scores[idx]++;
+  const el = document.getElementById(`score-${idx}`);
+  el.textContent = scores[idx];
+  const btn = document.getElementById(`sbtn-${idx}`);
+  btn.classList.remove('scored-flash');
+  void btn.offsetWidth;
+  btn.classList.add('scored-flash');
+  btn.style.borderColor = teams[idx].color;
+  btn.style.background = teams[idx].color + '18';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ < ROUNDS[currentRound].questions.length) {
+    showQuestion();
+  } else {
+    currentRound++;
+    if (currentRound < ROUNDS.length) {
+      showRoundIntro();
+    } else {
+      showFinal();
+    }
+  }
+}
+
+function showFinal() {
+  const sorted = teams.map((t,i) => ({name:t.name,color:t.color,score:scores[i]}))
+    .sort((a,b) => b.score - a.score);
+  const fs = document.getElementById('final-scores');
+  fs.innerHTML = sorted.map((t,i) => `
+    <div class="final-row ${i===0?'winner':''}">
+      <div class="final-row-left">
+        <span class="final-rank">${i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}.`}</span>
+        <span class="final-name">${t.name}</span>
+      </div>
+      <span class="final-pts">${t.score} pts</span>
+    </div>
+  `).join('');
+  showScreen('screen-final');
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// Dark mode
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  t&&t.addEventListener('click',()=>{
+    d=d==='dark'?'light':'dark';
+    r.setAttribute('data-theme',d);
+    t.setAttribute('aria-label','Switch to '+(d==='dark'?'light':'dark')+' mode');
+    t.innerHTML=d==='dark'
+      ?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      :'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  });
+})();
+</script>
+</body>
+</html>
